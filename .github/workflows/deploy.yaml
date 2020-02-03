@@ -14,7 +14,6 @@ jobs:
       - uses: olegtarasov/get-tag@v1
       - name: deploy-release
         run: gradle-kts-sample/.buildsystem/deploy.sh
-        continue-on-error: true
         env:
           GITHUB_MAVEN_USERNAME: ${{ secrets.GITHUB_MAVEN_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
