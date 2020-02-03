@@ -11,8 +11,9 @@ import java.net.URI
 object Deployment {
     val githubUser = System.getenv("GITHUB_MAVEN_USERNAME")
     val githubPassword = System.getenv("GITHUB_TOKEN")
+    val githubRepository = System.getenv("GITHUB_REPOSITORY")
     var deployUrl: String? = System.getenv("MAVEN_RELEASES_URL")
-            ?: "https://maven.pkg.github.com/atlassian"
+            ?: "https://maven.pkg.github.com/$githubRepository"
 
     fun initialize(project: Project) {
         initializePublishing(project)
@@ -20,7 +21,11 @@ object Deployment {
     }
 
     private fun initializePublishing(project: Project) {
-        project.version = Versions.library
+        project.version = System.getenv()["GITHUB_TAG_NAME"]?.let {
+            if (it.startsWith("v"))
+                it.substring(1)
+            else it
+        } ?: "0.0.0"
         project.plugins.apply("maven-publish")
 
         val javaPlugin = project.the(JavaPluginConvention::class)
