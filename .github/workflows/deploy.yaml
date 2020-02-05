@@ -17,4 +17,3 @@ jobs:
         env:
           GITHUB_MAVEN_USERNAME: ${{ secrets.GITHUB_MAVEN_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAVEN_RELEASES_URL: https://maven.pkg.github.com/atlassian/packages-maven
