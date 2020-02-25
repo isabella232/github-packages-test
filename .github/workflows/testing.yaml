@@ -1,0 +1,10 @@
+name: test secrets
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: echo "$SUPER_SECRET" | base64
+        env:
+          SUPER_SECRET: ${{ secrets.GLOBAL_SECRET_TEST }}

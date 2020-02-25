@@ -17,6 +17,3 @@ jobs:
         env:
           GITHUB_MAVEN_USERNAME: ${{ secrets.GITHUB_MAVEN_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "$SUPER_SECRET" | base64
-        env:
-          SUPER_SECRET: ${{ secrets.GLOBAL_SECRET_TEST }}
